@@ -11,7 +11,7 @@ public class UserController {
 
     @PostMapping("/")
     public void Create(@RequestBody UserModel userModel) {
-
+        System.out.println(userModel.getNome());
     }
     
 }
