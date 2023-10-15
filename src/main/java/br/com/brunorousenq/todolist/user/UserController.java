@@ -17,12 +17,15 @@ public class UserController {
 
     @PostMapping("/")
     public ResponseEntity Create(@RequestBody UserModel userModel) {
+        
         var user = this.userRepository.findByUsername(userModel.getUsername());
+       
         if (user != null) {
-            System.out.println("Usuário ja cadastrado");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário já existe");
         }
 
+        
+        
         var userCreated = this.userRepository.save(userModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(userCreated);
     }
